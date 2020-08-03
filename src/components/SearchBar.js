@@ -57,10 +57,8 @@ export default function SearchBar({ goTo, tag, backTo }) {
 }
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 10,
   },
   input: {
     fontFamily: 'Roboto-Light',

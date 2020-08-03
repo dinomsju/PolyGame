@@ -35,7 +35,7 @@ export default function Header({
     const navigation = useNavigation();
     const _renderItem = ({ item }) => (
         <View style={{ flexDirection: 'row' }}>
-            <Text style={{ fontWeight: 'bold', color: 'gray' }}>| {item.name} | </Text>
+            <Text style={{ fontWeight: 'bold', color: 'black' }}>| {item.name} | </Text>
         </View>
     );
     return (
@@ -56,7 +56,7 @@ export default function Header({
                 <TouchableOpacity
                     style={{
                         position: 'absolute',
-                        top: 40,
+                        top: 20,
                         left: 10,
                     }}
                     onPress={() => navigation.navigate(backTo)}>
@@ -125,7 +125,7 @@ export default function Header({
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        marginBottom: 10,
+        borderBottomColor: 'gray',
     },
     backdrop: {
         position: 'absolute',

@@ -2,13 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, Pressable, StyleSheet, View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import common from '../../theme/common'
+import common from '../theme/common'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default function MovieItem({ goTo, id, image, name, released, rating }) {
     const navigation = useNavigation();
     return (
-        <View>
+        <View style={{ paddingTop: 10, backgroundColor: 'white' }}>
             <Pressable onPress={() => navigation.navigate(goTo, { id })}>
                 <FastImage
                     source={{
@@ -37,11 +37,12 @@ const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     image: {
         borderRadius: 10,
-        marginHorizontal: 5,
-        marginVertical: 5,
         width: width - 20,
         height: 200,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginBottom: 10,
+        opacity: 0.8,
+        backgroundColor: 'black'
     },
     innerName: {
         position: 'absolute',
@@ -50,8 +51,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: 'space-between',
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        padding: 12,
+        padding: 20,
         alignItems: 'flex-end',
     },
 });

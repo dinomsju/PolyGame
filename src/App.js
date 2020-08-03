@@ -20,7 +20,7 @@ export default function RootStack() {
           headerShown: false,
         }}>
         <Stack.Screen name="Games" component={GameScreen} />
-        <Stack.Screen name="DetailGames" component={DetailGame} />
+        <Stack.Screen name="DetailGames" component={DetailGame} headerShown={true} />
       </Stack.Navigator>
     </NavigationContainer>
   );

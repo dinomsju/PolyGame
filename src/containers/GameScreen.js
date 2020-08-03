@@ -1,54 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Text, Platform } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlatList, View, RefreshControl, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
 import axiosConfig from '../api/axios';
-import GameItem from '../components/FlatList/GameItem'
-import common from '../theme/common'
-import SearchBar from '../components/SearchBar'
+import GameItem from '../components/GameItem'
+import SearchBar from '../components/SearchBar';
 
 export default function GameScreen() {
+    const [data, setData] = useState({});
     const [games, setGames] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState('none');
 
     useEffect(() => {
-        getGames();
-    }, []);
+        axiosConfig
+            .get(`/games?page=${page}`)
+            .then((response) => {
+                setData(response.data);
+                setGames((oldGames) => oldGames.concat(response.data.results));
+                setLoading('none');
+            });
+    }, [page]);
 
-    const getGames = async () => {
-        try {
-            const getGames = axiosConfig.get(`/games`);
-            const [
-                dataGames
-            ] = await Promise.all([
-                getGames
-            ]);
-
-            setGames(dataGames.data.results);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const _renderItem = ({ item }) => (
-        <GameItem goTo="DetailGames"
-            id={item.id}
-            image={item.background_image}
-            name={item.name}
-            released={item.released}
-            rating={item.rating}
-        />
-    );
-
+    const _loading = () => {
+        setLoading('flex');
+        setPage(page + 1);
+    };
     return (
-        <View style={[common.container, { marginBottom: 90 }]}>
+        <View style={styles.container}>
+            <StatusBar hidden={true} />
             <SearchBar />
-            <ScrollView style={{ paddingHorizontal: 5 }}>
+            <View>
                 <FlatList
                     data={games}
+                    showsVerticalScrollIndicator={false}
+                    onEndReached={_loading}
+                    onEndReachedThreshold={0.1}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={_renderItem}
+                    renderItem={({ item }) => (
+                        <GameItem goTo="DetailGames"
+                            id={item.id}
+                            image={item.background_image}
+                            name={item.name}
+                            released={item.released}
+                            rating={item.rating}
+                        />
+                    )}
                 />
-            </ScrollView>
+            </View>
         </View>
     )
 }
+const styles = StyleSheet.create({
+    container: {
+        marginBottom: 110,
+    },
+});
