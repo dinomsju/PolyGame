@@ -64,7 +64,7 @@ export default function DetailGame({ navigation, route }) {
                 <Overview overview={data.description_raw} />
                 <Platforms
                     platforms={platforms}
-                    goTo="Platforms"
+                    goTo="Platforms  "
                 />
                 <Button
                     goTo={data.website}
