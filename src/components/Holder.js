@@ -10,12 +10,8 @@ export default function DetailHolder() {
     <View style={{ flex: 1, marginBottom: 120 }}>
       <SkeletonPlaceholder>
         <View style={styles.container}>
-          <View style={styles.backdrop} />
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <View style={styles.block} />
-            <View style={[styles.block, { width: width * 0.61 }]} />
-          </View>
-          <View style={[styles.backdrop, { height: 500 }]} />
+          <View style={[styles.backdrop, { height: 250 }]} />
+          <View style={[styles.backdrop, { height: 700, borderRadius: 20 }]} />
         </View>
       </SkeletonPlaceholder>
     </View>

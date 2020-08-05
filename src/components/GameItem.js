@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, Pressable, StyleSheet, View, Text } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import common from '../theme/common'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -40,9 +40,16 @@ const styles = StyleSheet.create({
         width: width - 20,
         height: 200,
         alignSelf: 'center',
-        marginBottom: 10,
+        marginBottom: 5,
         opacity: 0.8,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        borderWidth: 1,
+        borderColor: '#ddd',
+        shadowColor: '#fff',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1,
     },
     innerName: {
         position: 'absolute',
@@ -53,5 +60,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 20,
         alignItems: 'flex-end',
+        elevation: 1,
     },
 });

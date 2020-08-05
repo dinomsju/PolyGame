@@ -1,45 +1,49 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import Entypo from 'react-native-vector-icons/Entypo'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import GameScreen from '../containers/GameScreen';
+import CreatorScreen from '../containers/CreatorScreen'
 
 const Tab = createBottomTabNavigator();
 
 export default function MainStack() {
     return (
         <Tab.Navigator
-            initialRouteName="Movie"
+            initialRouteName="Games"
             tabBarOptions={{
-                activeTintColor: '#E54028',
+                activeTintColor: 'white',
                 inactiveTintColor: '#A4A4A4',
+                showLabel: false,
+                style: {
+                    backgroundColor: 'black',
+                },
             }}>
             <Tab.Screen
-                name="Movie"
-                component={MovieScreen}
+                name="Games"
+                component={GameScreen}
                 options={{
-                    tabBarLabel: 'Movie',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="movie-open" color={color} size={23} />
+                        <Entypo name="game-controller" color={color} size={23} />
                     ),
                 }}
             />
             <Tab.Screen
-                name="TV"
-                component={TVScreen}
+                name="Genres"
+                component={GameScreen}
                 options={{
-                    tabBarLabel: 'TV',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="youtube-tv" color={color} size={24} />
+                        <FontAwesome5 name="layer-group" color={color} size={24} />
                     ),
                 }}
             />
             <Tab.Screen
-                name="People"
-                component={PeopleScreen}
+                name="Creators"
+                component={CreatorScreen}
                 options={{
-                    tabBarLabel: 'People',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome name="user" color={color} size={24} />
+                        <Fontisto name="user-secret" color={color} size={24} />
                     ),
                 }}
             />

@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import GameScreen from './containers/GameScreen';
 import DetailGame from './containers/DetailGame';
+import MainStack from './navigation/MainStack';
+import DetailCreators from './containers/DetailCreators';
 
 const Stack = createStackNavigator();
 
@@ -15,12 +17,14 @@ export default function RootStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Games"
+        initialRouteName="Main"
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="Main" component={MainStack} />
         <Stack.Screen name="Games" component={GameScreen} />
-        <Stack.Screen name="DetailGames" component={DetailGame} headerShown={true} />
+        <Stack.Screen name="DetailGames" component={DetailGame} />
+        <Stack.Screen name="DetailCreators" component={DetailCreators} />
       </Stack.Navigator>
     </NavigationContainer>
   );

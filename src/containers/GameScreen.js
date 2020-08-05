@@ -40,7 +40,7 @@ export default function GameScreen() {
                             id={item.id}
                             image={item.background_image}
                             name={item.name}
-                            released={item.released}
+                            released={item.released.substring(0, 4)}
                             rating={item.rating}
                         />
                     )}

@@ -7,7 +7,7 @@ export default StyleSheet.create({
     container: {
         paddingHorizontal: 10,
         paddingBottom: 10,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     },
     heading: {
         fontFamily: 'Roboto-Bold',
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     subtitle: {
         fontFamily: 'Roboto-Light',
-        fontSize: 14,
+        fontSize: 16,
     },
     row: {
         flexDirection: 'row',
