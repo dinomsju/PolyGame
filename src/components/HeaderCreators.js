@@ -76,14 +76,17 @@ export default function Header({ backTo, image, background, name, positions, gam
       />
       <View style={styles.inner}>
         <Text style={{ textAlign: 'center', color: 'white', fontFamily: 'Gilroy-ExtraBold', fontSize: 25, paddingVertical: 5 }}>{name}</Text>
-        <Text style={{ borderColor: 'white', borderWidth: 1, height: 2, width: width / 1.5, marginHorizontal: 60 }}></Text>
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={positions}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={_renderItem}
-        />
+        <Text style={{ borderColor: 'white', borderWidth: 1, height: 2, marginHorizontal: 60 }}></Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5 }}>
+          <Text style={{ fontSize: 20, fontFamily: 'Gilroy-ExtraBold', textAlign: 'center', color: 'white' }}>
+            {positions.map(function (positions, index) {
+              if (index === 0)
+                return " " + positions.name.charAt(0).toUpperCase() + positions.name.slice(1);
+              else
+                return ", " + positions.name.charAt(0).toUpperCase() + positions.name.slice(1);
+            })}
+          </Text>
+        </View>
         <TouchableOpacity>
           <LinearGradient colors={['black', '#232526']} style={{ padding: 15, borderRadius: 10, margin: 5, width: 175, marginHorizontal: 105 }}>
             <Text style={{ fontFamily: 'Gilroy-ExtraBold', color: 'white', textAlign: 'center', fontSize: 18 }}>Follow</Text>
@@ -131,5 +134,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 200,
     width: width,
+    justifyContent: 'center'
   },
 });

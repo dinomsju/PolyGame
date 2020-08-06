@@ -28,7 +28,7 @@ export default function GameScreen() {
     return (
         <View style={styles.container}>
             <StatusBar hidden={true} />
-            <SearchBar />
+            <SearchBar goTo="SearchScreen" backTo="Main" tag="games" />
             <View>
                 <FlatList
                     data={games}
@@ -39,7 +39,7 @@ export default function GameScreen() {
                             id={item.id}
                             image={item.background_image}
                             name={item.name}
-                            released={item.released.substring(0, 4)}
+                            released={item.released == null ? "" : item.released.substring(0, 4)}
                             rating={item.rating}
                         />
                     )}

@@ -6,7 +6,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   View,
-  Text
+  Text,
+  Image
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
@@ -24,12 +25,12 @@ export default function MovieItem({ goTo, id, image, name }) {
             color="#E54028"
             style={styles.activityIndicator}
           />
-          <FastImage
+          <Image
             source={{
               uri: `${image}`,
             }}
             style={styles.image}
-            resizeMode={FastImage.resizeMode.cover}
+            resizeMode='cover'
           />
           <Text
             style={{

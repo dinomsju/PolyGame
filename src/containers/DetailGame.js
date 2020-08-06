@@ -40,7 +40,10 @@ export default function DetailGame({ navigation, route }) {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Main')}>
                     <View style={common.row}>
-                        <Ionicons name="arrow-back" color={'white'} size={32} />
+                        <Image
+                            style={common.icon}
+                            source={require('../assets/icons/ic_back.png')}
+                        />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -50,7 +53,7 @@ export default function DetailGame({ navigation, route }) {
                     backTo="Main" />
                 <Content
                     title={data.name}
-                    release_date={data.released.substring(0, 4)}
+                    release_date={data.released == null ? '' : data.released.substring(0, 4)}
                     genres={genres}
                     ratings={ratings}
                     rating={data.rating}

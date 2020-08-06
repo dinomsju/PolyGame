@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, Pressable, StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, View, Text, Image } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import common from '../theme/common'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -11,12 +11,12 @@ export default function MovieItem({ goTo, id, image, name, released, rating }) {
     return (
         <View style={styles.container}>
             <Pressable onPress={() => navigation.navigate(goTo, { id })}>
-                <FastImage
+                <Image
                     source={{
                         uri: `${image}`,
                     }}
                     style={styles.image}
-                    resizeMode={FastImage.resizeMode.cover}
+                    resizeMode='cover'
                 />
                 <View style={styles.innerName}>
                     <View>

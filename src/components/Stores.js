@@ -23,7 +23,7 @@ export default function Stores({ stores }) {
             <View>
                 <FlatList
                     horizontal
-                    showsHorizontalScrollIndicator={false}
+                    paddingBottom={5}
                     data={stores}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={_renderItem}

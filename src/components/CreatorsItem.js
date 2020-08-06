@@ -29,7 +29,7 @@ export default function PeopleItem({ goTo, id, image, name }) {
             uri: `${image}`,
           }}
           style={styles.image}
-        // resizeMode={FastImage.resizeMode.cover}
+          resizeMode='cover'
         />
         <Text style={styles.name}>{name}</Text>
       </Pressable>

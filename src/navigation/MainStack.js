@@ -30,15 +30,6 @@ export default function MainStack() {
                 }}
             />
             <Tab.Screen
-                name="Genres"
-                component={GameScreen}
-                options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <FontAwesome5 name="layer-group" color={color} size={24} />
-                    ),
-                }}
-            />
-            <Tab.Screen
                 name="Creators"
                 component={CreatorScreen}
                 options={{

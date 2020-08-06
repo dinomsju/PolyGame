@@ -30,18 +30,6 @@ export default function SearchBar({ goTo, tag, backTo }) {
           alignItems: 'center',
           marginBottom: 10,
         }}>
-        <Pressable onPress={() => navigation.navigate(goTo, { tag, query })}>
-          <View style={styles.search}>
-            <FontAwesome name="search" color="white" size={30} />
-          </View>
-        </Pressable>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Search Here ..."
-          onChangeText={(text) => onChangeText(text)}
-          value={query}
-        />
         <Pressable
           onPress={() => navigation.navigate(backTo)}
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -50,6 +38,18 @@ export default function SearchBar({ goTo, tag, backTo }) {
             style={styles.tinyLogo}
             source={require('../assets/icons/HoneyBadger.png')}
           />
+        </Pressable>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Search Here ..."
+          onChangeText={(text) => onChangeText(text)}
+          value={query}
+        />
+        <Pressable onPress={() => navigation.navigate(goTo, { tag, query })}>
+          <View style={styles.search}>
+            <FontAwesome name="search" color="white" size={24} />
+          </View>
         </Pressable>
       </View>
     </LinearGradient>

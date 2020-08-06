@@ -76,21 +76,12 @@ export default function Content({
                     <View>
                         <FlatList
                             horizontal
-                            showsHorizontalScrollIndicator={false}
+                            paddingBottom={5}
                             data={ratings}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={_renderItem}
                         />
                     </View>
-                    {/* <ProgressCircle
-                        percent={(vote_rating) * 20}
-                        radius={20}
-                        borderWidth={3}
-                        color="#E54028"
-                        shadowColor="gray"
-                        bgColor="#fff">
-                        <Text style={[common.subtitle, { fontSize: 11, fontWeight: 'bold' }]}>{vote_rating}%</Text>
-                    </ProgressCircle> */}
                 </View>
             </View>
         </View >
