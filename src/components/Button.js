@@ -1,20 +1,20 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, View, Text, Linking } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
+import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Button({ goTo, label }) {
     return (
-        <RectButton onPress={() => {
+        <TouchableOpacity onPress={() => {
             Linking.openURL(`${goTo}`)
         }}>
-            <SafeAreaView style={{ backgroundColor: 'black' }} accessible>
+            <SafeAreaView style={{ backgroundColor: 'black', borderRadius: 5, paddingHorizontal: 20 }} accessible>
                 <View style={styles.container}>
                     <Text style={[styles.label, { color: 'white' }]}>
-                        {label.toUpperCase()}
+                        {label}
                     </Text>
                 </View>
             </SafeAreaView>
-        </RectButton>
+        </TouchableOpacity>
     );
 }
 

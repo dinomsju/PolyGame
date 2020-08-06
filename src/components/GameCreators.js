@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
   activityIndicator: {
     position: 'absolute',
     alignSelf: 'center',
-    top: 80,
+    top: 125,
   },
 });

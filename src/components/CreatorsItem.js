@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native';
 
 const width = Dimensions.get('window').width;
@@ -18,6 +19,11 @@ export default function PeopleItem({ goTo, id, image, name }) {
   return (
     <View style={styles.container}>
       <Pressable onPress={() => navigation.navigate(goTo, { id })}>
+        <ActivityIndicator
+          size="large"
+          color="red"
+          style={styles.activityIndicator}
+        />
         <Image
           source={{
             uri: `${image}`,
@@ -62,5 +68,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'gray'
+  },
+  activityIndicator: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 80
   },
 });

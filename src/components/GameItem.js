@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 5,
         opacity: 0.8,
-        backgroundColor: 'black',
+        backgroundColor: 'gray',
         borderWidth: 1,
         borderColor: '#ddd',
         shadowColor: '#fff',
@@ -61,5 +61,10 @@ const styles = StyleSheet.create({
         padding: 20,
         alignItems: 'flex-end',
         elevation: 1,
+    },
+    activityIndicator: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: 80
     },
 });

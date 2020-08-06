@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import {
     Dimensions,
     FlatList,
@@ -6,11 +6,11 @@ import {
     StyleSheet,
     Text,
     View,
-} from 'react-native';
-import axiosConfig from '../api/axios';
-import Header from '../components/HeaderCreators';
-import GameItem from '../components/GameItem';
-import common from '../theme/common';
+    ActivityIndicator
+} from 'react-native'
+import axiosConfig from '../api/axios'
+import Header from '../components/HeaderCreators'
+import LottieView from 'lottie-react-native'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -19,6 +19,7 @@ export default function DetailPeople({ route }) {
     const [data, setData] = useState({});
     const [games, setGames] = useState({});
     const [position, setPosition] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axiosConfig
@@ -26,14 +27,21 @@ export default function DetailPeople({ route }) {
             .then((response) => {
                 setData(response.data);
                 setPosition(response.data.positions);
+                setLoading(false);
             });
 
         axiosConfig
             .get(`/games?creators=${route.params.id}`)
             .then((response) => {
                 setGames(response.data.results);
+                setLoading(false);
             });
     }, [route.params.id]);
+
+    if (loading) {
+        return <LottieView style={{ backgroundColor: '#ffffff' }} source={require('../assets/icons/covicLoad.json')} autoPlay loop />
+    }
+
     return (
         <View style={{ flex: 1, paddingBottom: 50 }}>
             <Header

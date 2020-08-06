@@ -3,20 +3,18 @@ import { ScrollView, Text, View, Linking, StyleSheet, TouchableOpacity, Image } 
 import axiosConfig from '../api/axios';
 import Content from '../components/Content';
 import Overview from '../components/Overview';
-import DetailHolder from '../components/Holder';
-import Platforms from '../components/Platforms';
+import Stores from '../components/Stores';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Trailers from '../components/Trailers';
 import common from '../theme/common';
-
-
+import LottieView from 'lottie-react-native'
 
 export default function DetailGame({ navigation, route }) {
     const [data, setData] = useState({});
     const [genres, setGenres] = useState([]);
     const [ratings, setRatings] = useState([]);
-    const [platforms, setPlatforms] = useState([]);
+    const [stores, setStores] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -26,13 +24,13 @@ export default function DetailGame({ navigation, route }) {
                 setData(response.data);
                 setGenres(response.data.genres);
                 setRatings(response.data.ratings);
-                setPlatforms(response.data.parent_platforms);
+                setStores(response.data.stores);
                 setLoading(false);
             });
     }, [route.params.id]);
 
     if (loading) {
-        return <DetailHolder />;
+        return <LottieView style={{ backgroundColor: '#ffffff' }} source={require('../assets/icons/covicLoad.json')} autoPlay loop />;;
     }
 
     return (
@@ -62,15 +60,14 @@ export default function DetailGame({ navigation, route }) {
                     vote_rating={data.rating}
                 />
                 <Overview overview={data.description_raw} />
-                <Platforms
-                    platforms={platforms}
-                    goTo="Platforms  "
+                <Stores
+                    stores={stores}
                 />
                 <Button
                     goTo={data.website}
-                    label={'Click to the home page'} />
+                    label={'Click To The Home Page'} />
                 <Trailers
-                    trailers={data.clip.clip}
+                    trailers={data.clip !== null ? data.clip.clip : ''}
                 />
             </ScrollView>
         </View>
