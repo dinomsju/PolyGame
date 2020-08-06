@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     label: {
         textAlign: "center",
-        fontWeight: 'bold',
+        fontFamily: "Gilroy-ExtraBold",
         fontSize: 18
     },
 });

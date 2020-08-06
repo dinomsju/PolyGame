@@ -33,7 +33,7 @@ export default function MovieItem({ goTo, id, image, name }) {
           />
           <Text
             style={{
-              fontWeight: 'bold',
+              fontFamily: "Gilroy-ExtraBold",
               fontSize: 18,
               color: 'white',
               padding: 5,

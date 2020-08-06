@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import Trailers from '../components/Trailers';
 import common from '../theme/common';
 import LottieView from 'lottie-react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default function DetailGame({ navigation, route }) {
     const [data, setData] = useState({});
@@ -39,11 +40,7 @@ export default function DetailGame({ navigation, route }) {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Main')}>
                     <View style={common.row}>
-                        <Image
-                            style={styles.icon}
-                            source={require('../assets/icons/ic_back.png')}
-                        />
-                        <Text style={styles.backButton}>Back</Text>
+                        <Ionicons name="arrow-back" color={'white'} size={32} />
                     </View>
                 </TouchableOpacity>
             </View>

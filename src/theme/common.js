@@ -10,19 +10,17 @@ export default StyleSheet.create({
         backgroundColor: 'white',
     },
     heading: {
-        fontFamily: 'Roboto-Bold',
+        fontFamily: 'Gilroy-ExtraBold',
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#E54028',
+        color: '#3b5998',
         marginVertical: 10,
     },
     title: {
-        fontFamily: 'Roboto-Bold',
+        fontFamily: 'Gilroy-ExtraBold',
         fontSize: 20,
-        fontWeight: 'bold'
     },
     subtitle: {
-        fontFamily: 'Roboto-Light',
+        fontFamily: 'Gilroy-Light',
         fontSize: 16,
     },
     row: {
@@ -32,7 +30,7 @@ export default StyleSheet.create({
     backButton: {
         color: 'white',
         fontSize: 14,
-        fontFamily: 'Roboto-Regular',
+        fontFamily: 'Gilroy-ExtraBold',
     },
     icon: {
         marginRight: 5,

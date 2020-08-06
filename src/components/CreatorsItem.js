@@ -63,10 +63,9 @@ const styles = StyleSheet.create({
   name: {
     paddingHorizontal: 3,
     paddingVertical: 5,
-    fontFamily: 'Roboto-Bold',
+    fontFamily: 'Gilroy-ExtraBold',
     fontSize: 14,
     textAlign: 'center',
-    fontWeight: 'bold',
     color: 'gray'
   },
   activityIndicator: {

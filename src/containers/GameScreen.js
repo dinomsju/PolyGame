@@ -21,11 +21,6 @@ export default function GameScreen() {
             });
     }, [page]);
 
-    const _loading = () => {
-        // setLoading('flex');
-        setPage(page + 1);
-    };
-
     if (loading) {
         return <LottieView style={{ backgroundColor: '#ffffff' }} source={require('../assets/icons/covicLoad.json')} autoPlay loop />;;
     }
@@ -38,8 +33,6 @@ export default function GameScreen() {
                 <FlatList
                     data={games}
                     showsVerticalScrollIndicator={false}
-                    onEndReached={_loading}
-                    onEndReachedThreshold={0.1}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => (
                         <GameItem goTo="DetailGames"
@@ -50,6 +43,8 @@ export default function GameScreen() {
                             rating={item.rating}
                         />
                     )}
+                    onEndReached={() => setPage(page + 1)}
+                    onEndReachedThreshold={0.1}
                 />
             </View>
         </View>

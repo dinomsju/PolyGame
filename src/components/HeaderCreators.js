@@ -65,7 +65,6 @@ export default function Header({ backTo, image, background, name, positions, gam
               style={common.icon}
               source={require('../assets/icons/ic_back.png')}
             />
-            <Text style={common.backButton}>Back</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -76,7 +75,7 @@ export default function Header({ backTo, image, background, name, positions, gam
         style={styles.image}
       />
       <View style={styles.inner}>
-        <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 25, paddingVertical: 5 }}>{name}</Text>
+        <Text style={{ textAlign: 'center', color: 'white', fontFamily: 'Gilroy-ExtraBold', fontSize: 25, paddingVertical: 5 }}>{name}</Text>
         <Text style={{ borderColor: 'white', borderWidth: 1, height: 2, width: width / 1.5, marginHorizontal: 60 }}></Text>
         <FlatList
           horizontal
@@ -87,7 +86,7 @@ export default function Header({ backTo, image, background, name, positions, gam
         />
         <TouchableOpacity>
           <LinearGradient colors={['black', '#232526']} style={{ padding: 15, borderRadius: 10, margin: 5, width: 175, marginHorizontal: 105 }}>
-            <Text style={{ fontWeight: 'bold', color: 'white', textAlign: 'center', fontSize: 18 }}>Follow</Text>
+            <Text style={{ fontFamily: 'Gilroy-ExtraBold', color: 'white', textAlign: 'center', fontSize: 18 }}>Follow</Text>
           </LinearGradient>
         </TouchableOpacity>
         <View>
