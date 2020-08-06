@@ -4,6 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import axiosConfig, { apiKey } from '../api/axios';
 import CreatorsItem from '../components/CreatorsItem';
 import SearchBar from '../components/SearchBar';
+import LottieView from 'lottie-react-native'
 
 export default function CreatorScreen() {
   const [creators, setCreators] = useState([]);
@@ -19,6 +20,10 @@ export default function CreatorScreen() {
         setLoading(false);
       });
   }, [page]);
+
+  if (loading) {
+    return <LottieView style={{ backgroundColor: '#ffffff' }} source={require('../assets/icons/covicLoad.json')} autoPlay loop />
+  }
 
   return (
     <View style={{ paddingBottom: 60 }}>

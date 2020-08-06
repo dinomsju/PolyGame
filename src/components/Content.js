@@ -27,22 +27,15 @@ export default function Content({
     release_date,
     ratings,
     genres,
-    vote_rating
+    vote_rating,
 
 }) {
     const navigation = useNavigation();
-    const _renderItem = ({ item }) => (
-        <View style={{ marginHorizontal: 2 }}>
-            <LinearGradient colors={['black', '#232526']} style={{ borderRadius: 10, margin: 1, height: 20, paddingHorizontal: 5 }}>
-                <Text style={{ color: 'white', textAlign: 'center' }}>{item.name}</Text>
-            </LinearGradient>
-        </View>
-    );
 
-    const _renderRatings = ({ item }) => (
+    const _renderItem = ({ item }) => (
         <View style={{ margin: 2 }}>
             <LinearGradient colors={['black', '#232526']} style={{ borderRadius: 20, paddingHorizontal: 10, paddingVertical: 5, margin: 1 }}>
-                <Text style={{ color: 'white', textAlign: 'center' }}>{item.title.charAt(0).toUpperCase() + item.title.slice(1)} {item.count}</Text>
+                <Text style={{ color: 'white', textAlign: 'center', fontWeight: 'bold' }}>{item.title.charAt(0).toUpperCase() + item.title.slice(1)}<Text style={{ color: 'gray', fontWeight: 'bold' }}>  {item.count}</Text></Text>
             </LinearGradient>
         </View>
     );
@@ -58,14 +51,16 @@ export default function Content({
                     {/* title */}
                     <Text style={[common.title, { marginVertical: 5, color: 'gray', fontSize: 22 }]}>{title}</Text>
                     {/* genres */}
-                    <ScrollView>
-                        <FlatList
-                            horizontal
-                            data={genres}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={_renderItem}
-                        />
-                    </ScrollView>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                            {genres.map(function (genre, index) {
+                                if (index === 0)
+                                    return " " + genre.name;
+                                else
+                                    return ", " + genre.name;
+                            })}
+                        </Text>
+                    </View>
                     <View style={[common.row]}>
                         {/* release_date */}
                         <View style={[common.row, { alignItems: 'center', padding: 5 }]}>
@@ -75,10 +70,11 @@ export default function Content({
                     </View>
                     <View>
                         <FlatList
-                            numColumns={3}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
                             data={ratings}
                             keyExtractor={(item, index) => index.toString()}
-                            renderItem={_renderRatings}
+                            renderItem={_renderItem}
                         />
                     </View>
                     {/* <ProgressCircle

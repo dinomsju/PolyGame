@@ -14,6 +14,8 @@ target 'PolyGame' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'PolyGameTests' do
     inherit! :complete
     # Pods for testing

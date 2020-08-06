@@ -4,28 +4,27 @@ import { Text, View, Dimensions, Image } from 'react-native';
 import common from '../theme/common';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
+import Button from './Button';
 
 const W = Dimensions.get('screen').width;
-export default function Platforms({ platforms }) {
+export default function Stores({ stores }) {
     const navigation = useNavigation();
     const _renderItem = ({ item, goTo }) => (
-        <View>
-            <TouchableOpacity>
-                <LinearGradient colors={['black', '#232526']} style={{ padding: 10, borderRadius: 10, margin: 5, width: 175 }}>
-                    <Text style={{ fontWeight: 'bold', color: 'white', textAlign: 'center', fontSize: 18 }}>{item.platform.name}</Text>
-                </LinearGradient>
-            </TouchableOpacity>
+        <View style={{ padding: 2 }}>
+            <Button
+                goTo={item.url}
+                label={item.store.name} />
         </View>
     );
 
     return (
         <View style={[common.container, { backgroundColor: 'white' }]} >
-            <Text style={common.heading}>Platforms</Text>
+            <Text style={common.heading}>Where to buy</Text>
             <View>
                 <FlatList
-                    numColumns={2}
+                    horizontal
                     showsHorizontalScrollIndicator={false}
-                    data={platforms}
+                    data={stores}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={_renderItem}
                 />

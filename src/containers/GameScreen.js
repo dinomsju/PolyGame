@@ -3,12 +3,13 @@ import { FlatList, View, RefreshControl, StyleSheet, StatusBar, ActivityIndicato
 import axiosConfig from '../api/axios';
 import GameItem from '../components/GameItem'
 import SearchBar from '../components/SearchBar';
+import LottieView from 'lottie-react-native'
 
 export default function GameScreen() {
     const [data, setData] = useState({});
     const [games, setGames] = useState([]);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState('none');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axiosConfig
@@ -16,14 +17,19 @@ export default function GameScreen() {
             .then((response) => {
                 setData(response.data);
                 setGames((oldGames) => oldGames.concat(response.data.results));
-                setLoading('none');
+                setLoading(false);
             });
     }, [page]);
 
     const _loading = () => {
-        setLoading('flex');
+        // setLoading('flex');
         setPage(page + 1);
     };
+
+    if (loading) {
+        return <LottieView style={{ backgroundColor: '#ffffff' }} source={require('../assets/icons/covicLoad.json')} autoPlay loop />;;
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar hidden={true} />
