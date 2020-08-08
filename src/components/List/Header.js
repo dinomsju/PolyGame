@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
-import common from '../theme/common'
+import common from '../../theme/common'
 
 export default function Header({ imageHeader, backTo }) {
     const navigation = useNavigation();

@@ -1,10 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, Pressable, StyleSheet, View, Text, Image } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import common from '../theme/common'
+import common from '../../theme/common'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { Card } from 'react-native-paper'
 
 export default function MovieItem({ goTo, id, image, name, released, rating }) {
     const navigation = useNavigation();

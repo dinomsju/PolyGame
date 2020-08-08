@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text, View, Linking, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, StatusBar, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import axiosConfig from '../api/axios';
-import Content from '../components/Content';
+import Content from '../components/List/Content';
 import Overview from '../components/Overview';
 import Stores from '../components/Stores';
-import Header from '../components/Header';
+import Header from '../components/List/Header';
 import Button from '../components/Button';
 import Trailers from '../components/Trailers';
 import common from '../theme/common';
 import LottieView from 'lottie-react-native'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Animated from 'react-native-reanimated'
 
+const HEADER_HEIGHT = Platform.OS == 'ios' ? 115 : 10 + StatusBar.currentHeight;
 export default function DetailGame({ navigation, route }) {
+
+    const scrollY = new Animated.Value(0);
+    const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT)
+    const headerY = Animated.interpolate(diffClampScrollY, {
+        inputRange: [0, HEADER_HEIGHT],
+        outputRange: [0, -HEADER_HEIGHT]
+    })
+
     const [data, setData] = useState({});
     const [genres, setGenres] = useState([]);
     const [ratings, setRatings] = useState([]);
@@ -36,8 +45,20 @@ export default function DetailGame({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
+            <Animated.View
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: HEADER_HEIGHT,
+                    backgroundColor: 'black',
+                    zIndex: 1000,
+                    elevation: 1000,
+                    transform: [{ translateY: headerY }]
+                }}>
                 <TouchableOpacity
+                    style={{ padding: 5, paddingLeft: 10 }}
                     onPress={() => navigation.navigate('Main')}>
                     <View style={common.row}>
                         <Image
@@ -46,8 +67,17 @@ export default function DetailGame({ navigation, route }) {
                         />
                     </View>
                 </TouchableOpacity>
-            </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            </Animated.View>
+            <Animated.ScrollView
+                bounces={false}
+                scrollEventThrottle={16}
+                style={{ paddingTop: 20 }}
+                onScroll={Animated.event([
+                    {
+                        nativeEvent: { contentOffset: { y: scrollY } }
+                    }
+                ])}
+                showsVerticalScrollIndicator={false}>
                 <Header
                     imageHeader={data.background_image}
                     backTo="Main" />
@@ -69,8 +99,8 @@ export default function DetailGame({ navigation, route }) {
                 <Trailers
                     trailers={data.clip !== null ? data.clip.clip : ''}
                 />
-            </ScrollView>
-        </View>
+            </Animated.ScrollView>
+        </View >
     )
 }
 const styles = StyleSheet.create({

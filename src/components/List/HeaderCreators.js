@@ -9,13 +9,11 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ViewComponent,
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
-import common from '../theme/common'
+import common from '../../theme/common'
 import { FlatList } from 'react-native-gesture-handler';
-import GameCreators from '../components/GameCreators';
+import GameCreators from './GameCreators';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -24,12 +22,6 @@ export default function Header({ backTo, image, background, name, positions, gam
   const navigation = useNavigation();
 
   const _renderItem = ({ item }) => (
-    <View style={{ marginHorizontal: 10, padding: 5 }}>
-      <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 20, paddingVertical: 5 }}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Text>
-    </View >
-  );
-
-  const _renderGame = ({ item }) => (
     <GameCreators
       goTo="DetailGames"
       id={item.id}
@@ -51,22 +43,17 @@ export default function Header({ backTo, image, background, name, positions, gam
           resizeMode="cover"
           source={{ uri: `${background}` }}
         />
-
-        <TouchableOpacity
-          style={{
-            width: 100,
-            position: 'absolute',
-            top: 20,
-            left: 10,
-          }}
-          onPress={() => navigation.navigate(backTo)}>
-          <View style={common.row}>
-            <Image
-              style={common.icon}
-              source={require('../assets/icons/ic_back.png')}
-            />
-          </View>
-        </TouchableOpacity>
+        <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Main')}>
+            <View style={common.row}>
+              <Image
+                style={common.icon}
+                source={require('../../assets/icons/ic_back.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
       <Image
         source={{
@@ -99,7 +86,7 @@ export default function Header({ backTo, image, background, name, positions, gam
             showsHorizontalScrollIndicator={false}
             data={games}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={_renderGame}
+            renderItem={_renderItem}
           />
         </View>
       </View>
@@ -111,6 +98,18 @@ const styles = StyleSheet.create({
     height: height,
     paddingTop: Platform.OS === 'ios' ? 50 : 40,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    alignItems: 'center',
+    backgroundColor: '#000'
+  },
   image: {
     backgroundColor: 'black',
     marginTop: -70,
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
     height: 140,
     width: 140,
     position: 'absolute',
-    top: 130
+    top: 160
   },
   background: {
     position: 'absolute',
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     position: 'absolute',
-    top: 200,
+    top: 250,
     width: width,
     justifyContent: 'center'
   },

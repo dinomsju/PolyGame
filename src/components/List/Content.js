@@ -10,12 +10,8 @@ import {
     View,
     FlatList
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import ProgressCircle from 'react-native-progress-circle';
-import common from '../theme/common';
+import common from '../../theme/common';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Feather from 'react-native-vector-icons/Feather'
-import { ScrollView } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 
 

@@ -9,7 +9,7 @@ import {
     ActivityIndicator
 } from 'react-native'
 import axiosConfig from '../api/axios'
-import Header from '../components/HeaderCreators'
+import Header from '../components/List/HeaderCreators'
 import LottieView from 'lottie-react-native'
 
 const width = Dimensions.get('window').width;
@@ -46,10 +46,10 @@ export default function DetailPeople({ route }) {
         <View style={{ flex: 1, paddingBottom: 50 }}>
             <Header
                 backTo="Main"
-                image={data.image}
+                image={data.image == null ? data.image_background : data.image}
                 background={data.image_background}
                 name={data.name}
-                positions={position}
+                positions={position == null ? '' : position}
                 games={games} />
         </View>
     );

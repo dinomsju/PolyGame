@@ -35,7 +35,7 @@ export default StyleSheet.create({
     icon: {
         marginRight: 5,
         marginTop: Platform.OS === 'ios' ? 0 : 2,
-        height: 15,
-        width: 15,
+        height: 20,
+        width: 20,
     },
 });

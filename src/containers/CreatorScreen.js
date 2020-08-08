@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import axiosConfig, { apiKey } from '../api/axios';
-import CreatorsItem from '../components/CreatorsItem';
+import CreatorsItem from '../components/List/CreatorsItem';
 import SearchBar from '../components/SearchBar';
 import LottieView from 'lottie-react-native'
 
@@ -37,7 +36,7 @@ export default function CreatorScreen() {
           <CreatorsItem
             goTo="DetailCreators"
             id={item.id}
-            image={item.image}
+            image={item.image == null ? item.image_background : item.image}
             name={item.name}
           />
         )}

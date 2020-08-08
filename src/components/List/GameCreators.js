@@ -9,7 +9,6 @@ import {
   Text,
   Image
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;

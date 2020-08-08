@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import axiosConfig from '../api/axios';
-import GameItem from '../components/GameItem';
-import CreatorsItem from '../components/CreatorsItem';
+import GameItem from '../components/List/GameItem';
+import CreatorsItem from '../components/List/CreatorsItem';
 import SearchBar from '../components/SearchBar';
 
 const TAGs = {
