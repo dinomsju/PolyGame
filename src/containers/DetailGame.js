@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, StatusBar, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, StatusBar, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import axiosConfig from '../api/axios';
-import Content from '../components/List/Content';
+import Header from '../components/List/Header';
 import Overview from '../components/Overview';
 import Stores from '../components/Stores';
-import Header from '../components/List/Header';
 import Button from '../components/Button';
 import Trailers from '../components/Trailers';
+import Series from '../components/List/Series';
+import Screenshots from '../components/List/Screenshots';
 import common from '../theme/common';
 import LottieView from 'lottie-react-native'
 import Animated from 'react-native-reanimated'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const HEADER_HEIGHT = Platform.OS == 'ios' ? 115 : 10 + StatusBar.currentHeight;
 export default function DetailGame({ navigation, route }) {
@@ -25,6 +27,8 @@ export default function DetailGame({ navigation, route }) {
     const [genres, setGenres] = useState([]);
     const [ratings, setRatings] = useState([]);
     const [stores, setStores] = useState([]);
+    const [screenshots, setScreenshots] = useState([]);
+    const [series, setSeries] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -35,6 +39,19 @@ export default function DetailGame({ navigation, route }) {
                 setGenres(response.data.genres);
                 setRatings(response.data.ratings);
                 setStores(response.data.stores);
+                setLoading(false);
+            });
+
+        axiosConfig
+            .get(`/games/${route.params.id}/screenshots`)
+            .then((response) => {
+                setScreenshots(response.data.results);
+                setLoading(false);
+            });
+        axiosConfig
+            .get(`/games/${route.params.id}/game-series`)
+            .then((response) => {
+                setSeries(response.data.results);
                 setLoading(false);
             });
     }, [route.params.id]);
@@ -58,13 +75,11 @@ export default function DetailGame({ navigation, route }) {
                     transform: [{ translateY: headerY }]
                 }}>
                 <TouchableOpacity
-                    style={{ padding: 5, paddingLeft: 10 }}
+                    style={{ paddingLeft: 5 }}
                     onPress={() => navigation.navigate('Main')}>
                     <View style={common.row}>
-                        <Image
-                            style={common.icon}
-                            source={require('../assets/icons/ic_back.png')}
-                        />
+                        <Ionicons name="ios-chevron-back" color={'white'} size={30} />
+                        <Text style={[common.title, { color: 'white', paddingLeft: 10 }]}>{data.name}</Text>
                     </View>
                 </TouchableOpacity>
             </Animated.View>
@@ -78,10 +93,10 @@ export default function DetailGame({ navigation, route }) {
                     }
                 ])}
                 showsVerticalScrollIndicator={false}>
+                <Trailers
+                    trailers={data.clip != null ? data.clip.clip : data.background_image}
+                />
                 <Header
-                    imageHeader={data.background_image}
-                    backTo="Main" />
-                <Content
                     title={data.name}
                     release_date={data.released == null ? '' : data.released.substring(0, 4)}
                     genres={genres}
@@ -89,16 +104,23 @@ export default function DetailGame({ navigation, route }) {
                     rating={data.rating}
                     vote_rating={data.rating}
                 />
-                <Overview overview={data.description_raw} />
+                <Overview overview={data.description_raw}
+                />
                 <Stores
                     stores={stores}
                 />
                 <Button
                     goTo={data.website}
-                    label={'Click To The Home Page'} />
-                <Trailers
-                    trailers={data.clip !== null ? data.clip.clip : ''}
+                    label={'Click To The Home Page'}
                 />
+
+                <Screenshots
+                    screenshots={screenshots}
+                />
+                <Series
+                    series={series}
+                />
+
             </Animated.ScrollView>
         </View >
     )

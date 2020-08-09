@@ -18,7 +18,7 @@ export default function MovieItem({ goTo, id, image, name }) {
   return (
     <View>
       <Pressable onPress={() => navigation.navigate(goTo, { id })}>
-        <View style={styles.container}>
+        <View style={[styles.container, { marginLeft: 5 }]}>
           <ActivityIndicator
             size="small"
             color="#E54028"
@@ -51,9 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     position: 'relative',
     marginBottom: 5,
-    marginRight: width * 0.01,
+    marginRight: 5,
     borderRadius: 5,
-    marginHorizontal: 5,
   },
   image: {
     width: (width / 2) - 10,

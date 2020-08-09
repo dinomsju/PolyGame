@@ -49,7 +49,7 @@ export default function DetailPeople({ route }) {
                 image={data.image == null ? data.image_background : data.image}
                 background={data.image_background}
                 name={data.name}
-                positions={position == null ? '' : position}
+                positions={position}
                 games={games} />
         </View>
     );

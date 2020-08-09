@@ -26,6 +26,7 @@ export default StyleSheet.create({
     row: {
         flexDirection: 'row',
         marginTop: Platform.OS === 'ios' ? 3 : 0,
+        alignItems: 'center'
     },
     backButton: {
         color: 'white',

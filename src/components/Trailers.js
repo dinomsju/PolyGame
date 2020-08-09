@@ -16,13 +16,12 @@ export default function Trailers({ trailers }) {
     }
 
     return (
-        <View style={common.container}>
-            <Text style={common.heading}>Trailers</Text>
+        <View>
             <WebView
+                containerStyle
                 style={{ height: 209 }}
                 source={{ uri: `${trailers}` }}
                 renderLoading={ActivityIndicatorLoadingView}
-                startInLoadingState={true}
             />
         </View>
     )

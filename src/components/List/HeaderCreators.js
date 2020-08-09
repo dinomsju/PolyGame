@@ -14,6 +14,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import common from '../../theme/common'
 import { FlatList } from 'react-native-gesture-handler';
 import GameCreators from './GameCreators';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -43,17 +44,13 @@ export default function Header({ backTo, image, background, name, positions, gam
           resizeMode="cover"
           source={{ uri: `${background}` }}
         />
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Main')}>
-            <View style={common.row}>
-              <Image
-                style={common.icon}
-                source={require('../../assets/icons/ic_back.png')}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Main')}>
+          <View style={common.row}>
+            <Ionicons name="arrow-back" color={'white'} size={40} />
+          </View>
+        </TouchableOpacity>
       </View>
       <Image
         source={{
@@ -96,7 +93,8 @@ export default function Header({ backTo, image, background, name, positions, gam
 const styles = StyleSheet.create({
   container: {
     height: height,
-    paddingTop: Platform.OS === 'ios' ? 50 : 40,
+    paddingTop: 20,
+    paddingLeft: 20
   },
   header: {
     flexDirection: 'row',
@@ -126,7 +124,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: height,
     width: width,
-    opacity: 0.6,
+    opacity: 0.5,
     backgroundColor: 'black'
   },
   inner: {

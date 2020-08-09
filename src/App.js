@@ -6,6 +6,5 @@ import Header from './animations/Header'
 export default function App() {
   return (
     <RootStack />
-    // <Header />
   )
 }
