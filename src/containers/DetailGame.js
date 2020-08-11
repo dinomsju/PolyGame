@@ -79,7 +79,7 @@ export default function DetailGame({ navigation, route }) {
                     onPress={() => navigation.navigate('Main')}>
                     <View style={common.row}>
                         <Ionicons name="ios-chevron-back" color={'white'} size={30} />
-                        <Text style={[common.title, { color: 'white', paddingLeft: 10 }]}>{data.name}</Text>
+                        <Text style={[common.title, { color: 'white', paddingLeft: 10, width: 350 }]} numberOfLines={1}>{data.name}</Text>
                     </View>
                 </TouchableOpacity>
             </Animated.View>

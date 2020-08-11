@@ -23,7 +23,7 @@ export default function Header({
     release_date,
     ratings,
     genres,
-    rating,
+    rating
 
 }) {
     const navigation = useNavigation();

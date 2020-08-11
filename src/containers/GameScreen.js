@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, RefreshControl, StyleSheet, StatusBar, ActivityIndicator } from 'react-native';
+import { FlatList, View, StyleSheet, StatusBar } from 'react-native';
 import axiosConfig from '../api/axios';
 import GameItem from '../components/List/GameItem'
 import SearchBar from '../components/SearchBar';
@@ -13,7 +13,7 @@ export default function GameScreen() {
 
     useEffect(() => {
         axiosConfig
-            .get(`/games?dates=2020-01-01%2C2020-08-10&ordering=-added&page=${page}`)
+            .get(`/games?dates=2020-01-01%2C2020-08-10&ordering=-rating&page=${page}`)
             .then((response) => {
                 setData(response.data);
                 setGames((oldGames) => oldGames.concat(response.data.results));
