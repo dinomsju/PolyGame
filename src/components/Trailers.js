@@ -14,7 +14,6 @@ export default function Trailers({ trailers }) {
             />
         );
     }
-
     return (
         <View>
             <WebView

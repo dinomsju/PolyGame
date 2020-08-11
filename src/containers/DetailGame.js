@@ -52,6 +52,7 @@ export default function DetailGame({ navigation, route }) {
             .get(`/games/${route.params.id}/game-series`)
             .then((response) => {
                 setSeries(response.data.results);
+                console.log(response.data.results);
                 setLoading(false);
             });
     }, [route.params.id]);

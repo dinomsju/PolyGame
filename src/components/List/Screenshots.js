@@ -1,13 +1,18 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, FlatList, View, Dimensions, Image, Text } from 'react-native'
+import { StyleSheet, FlatList, View, Dimensions, Image, Text, ActivityIndicator } from 'react-native'
 import common from '../../theme/common'
 
 export default function Screenshots({ screenshots }) {
     const navigation = useNavigation();
 
     const _renderItem = ({ item }) => (
-        <View style={{ padding: 5 }}>
+        <View style={{ margin: 5, backgroundColor: 'black' }}>
+            <ActivityIndicator
+                size="small"
+                color="#E54028"
+                style={styles.activityIndicator}
+            />
             <Image
                 style={{ width: width - 50, height: 200 }}
                 source={{ uri: item.image }}
@@ -55,5 +60,10 @@ const styles = StyleSheet.create({
         marginTop: Platform.OS === 'ios' ? 0 : 2,
         height: 15,
         width: 15,
+    },
+    activityIndicator: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: 100,
     },
 });

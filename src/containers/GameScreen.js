@@ -13,7 +13,7 @@ export default function GameScreen() {
 
     useEffect(() => {
         axiosConfig
-            .get(`/games?dates=2020-01-01%2C2020-08-10&ordering=-rating&page=${page}`)
+            .get(`/games?page=${page}`)
             .then((response) => {
                 setData(response.data);
                 setGames((oldGames) => oldGames.concat(response.data.results));
