@@ -19,7 +19,7 @@ export default function MovieItem({ goTo, id, image, name, released, rating }) {
                 <View style={styles.innerName}>
                     <View>
                         <Text style={[common.title, { color: 'white' }]}>{name}</Text>
-                        <Text style={[common.title, { color: 'gray', fontSize: 18 }]}>{released}</Text>
+                        <Text style={[common.title, { color: 'white', fontSize: 18, opacity: 0.9 }]}>{released}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="star" size={20} color={'yellow'} style={{ paddingRight: 5 }} />
                             <Text style={{ color: 'yellow', fontWeight: 'bold', fontSize: 18, fontFamily: 'Gilroy-ExtraBold', paddingRight: 5 }}>{rating}</Text>

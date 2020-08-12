@@ -19,7 +19,6 @@ export default function Series({ series }) {
             <Text style={[common.heading, { paddingLeft: 10 }]}>Other games in the series</Text>
             <FlatList
                 horizontal
-                paddingBottom={20}
                 showsHorizontalScrollIndicator={false}
                 data={series}
                 keyExtractor={(item, index) => index.toString()}

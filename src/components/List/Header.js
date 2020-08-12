@@ -72,6 +72,7 @@ export default function Header({
                     <View>
                         <FlatList
                             horizontal
+                            showsHorizontalScrollIndicator={false}
                             paddingBottom={5}
                             data={ratings}
                             keyExtractor={(item, index) => index.toString()}

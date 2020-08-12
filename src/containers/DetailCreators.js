@@ -15,7 +15,7 @@ import LottieView from 'lottie-react-native'
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-export default function DetailPeople({ route }) {
+export default function DetailCreators({ route }) {
     const [data, setData] = useState({});
     const [games, setGames] = useState({});
     const [position, setPosition] = useState('');
@@ -45,7 +45,7 @@ export default function DetailPeople({ route }) {
     return (
         <View style={{ flex: 1, paddingBottom: 50 }}>
             <Header
-                backTo="Main"
+                // backTo="Main"
                 image={data.image == null ? data.image_background : data.image}
                 background={data.image_background}
                 name={data.name}

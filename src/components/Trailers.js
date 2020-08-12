@@ -15,14 +15,12 @@ export default function Trailers({ trailers }) {
         );
     }
     return (
-        <View>
-            <WebView
-                containerStyle
-                style={{ height: 209 }}
-                source={{ uri: `${trailers}` }}
-                renderLoading={ActivityIndicatorLoadingView}
-            />
-        </View>
+        <WebView
+            containerStyle
+            style={{ height: 209 }}
+            source={{ uri: `${trailers}` }}
+            renderLoading={ActivityIndicatorLoadingView}
+        />
     )
 }
 

@@ -30,7 +30,7 @@ export default function SearchScreen({ route }) {
           id={item.id}
           image={item.background_image}
           name={item.name}
-          released={item.released == null ? "" : item.released.substring(0, 4)}
+          released={item.released == null ? "" : item.released}
           rating={item.rating}
         />
       );
@@ -60,6 +60,6 @@ export default function SearchScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 50
+    marginBottom: 55
   },
 });

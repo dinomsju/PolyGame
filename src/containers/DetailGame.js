@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { View, StatusBar, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, StatusBar, StyleSheet, ScrollView, Dimensions, Text, Image } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import axiosConfig from '../api/axios';
 import Header from '../components/List/Header';
 import Overview from '../components/Overview';
@@ -8,21 +9,15 @@ import Button from '../components/Button';
 import Trailers from '../components/Trailers';
 import Series from '../components/List/Series';
 import Screenshots from '../components/List/Screenshots';
-import common from '../theme/common';
 import LottieView from 'lottie-react-native'
-import Animated from 'react-native-reanimated'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import HeaderImageScrollView, {
+    TriggeringView,
+} from 'react-native-image-header-scroll-view';
+import * as Animatable from 'react-native-animatable';
+const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
+const MAX_HEIGHT = 220;
 
-const HEADER_HEIGHT = Platform.OS == 'ios' ? 115 : 10 + StatusBar.currentHeight;
 export default function DetailGame({ navigation, route }) {
-
-    const scrollY = new Animated.Value(0);
-    const diffClampScrollY = Animated.diffClamp(scrollY, 0, HEADER_HEIGHT)
-    const headerY = Animated.interpolate(diffClampScrollY, {
-        inputRange: [0, HEADER_HEIGHT],
-        outputRange: [0, -HEADER_HEIGHT]
-    })
-
     const [data, setData] = useState({});
     const [genres, setGenres] = useState([]);
     const [ratings, setRatings] = useState([]);
@@ -30,6 +25,8 @@ export default function DetailGame({ navigation, route }) {
     const [screenshots, setScreenshots] = useState([]);
     const [series, setSeries] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const navTitleView = useRef(null);
 
     useEffect(() => {
         axiosConfig
@@ -52,7 +49,6 @@ export default function DetailGame({ navigation, route }) {
             .get(`/games/${route.params.id}/game-series`)
             .then((response) => {
                 setSeries(response.data.results);
-                console.log(response.data.results);
                 setLoading(false);
             });
     }, [route.params.id]);
@@ -63,90 +59,92 @@ export default function DetailGame({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <Animated.View
-                style={{
-                    position: 'absolute',
-                    left: 0,
-                    right: 0,
-                    top: 0,
-                    height: HEADER_HEIGHT,
-                    backgroundColor: 'black',
-                    zIndex: 1000,
-                    elevation: 1000,
-                    transform: [{ translateY: headerY }]
-                }}>
-                <TouchableOpacity
-                    style={{ paddingLeft: 5 }}
-                    onPress={() => navigation.navigate('Main')}>
-                    <View style={common.row}>
-                        <Ionicons name="ios-chevron-back" color={'white'} size={30} />
-                        <Text style={[common.title, { color: 'white', paddingLeft: 10, width: 350 }]} numberOfLines={1}>{data.name}</Text>
+            <HeaderImageScrollView
+                maxHeight={MAX_HEIGHT}
+                minHeight={MIN_HEIGHT}
+                maxOverlayOpacity={0.6}
+                minOverlayOpacity={0.3}
+                renderHeader={() => (
+                    // <Image source={{ uri: data.background_image }} style={styles.image} />
+                    <View style={styles.image}>
+                        <Trailers
+                            trailers={data.clip != null ? data.clip.clip : data.background_image}
+                        />
                     </View>
-                </TouchableOpacity>
-            </Animated.View>
-            <Animated.ScrollView
-                bounces={false}
-                scrollEventThrottle={16}
-                style={{ paddingTop: 20 }}
-                onScroll={Animated.event([
-                    {
-                        nativeEvent: { contentOffset: { y: scrollY } }
-                    }
-                ])}
-                showsVerticalScrollIndicator={false}>
-                <Trailers
-                    trailers={data.clip != null ? data.clip.clip : data.background_image}
-                />
-                <Header
-                    title={data.name}
-                    release_date={data.released == null ? '' : data.released.substring(0, 4)}
-                    genres={genres}
-                    ratings={ratings}
-                    rating={data.rating}
-                    vote_rating={data.rating}
-                />
-                <Overview overview={data.description_raw}
-                />
-                <Stores
-                    stores={stores}
-                />
-                <Button
-                    goTo={data.website}
-                    label={'Click To The Home Page'}
-                />
+                )}
+                renderFixedForeground={() => (
+                    <Animatable.View style={styles.navTitleView} ref={navTitleView}>
+                        <Text style={styles.navTitle} numberOfLines={1}>{data.name}</Text>
+                    </Animatable.View>
+                )}>
+                <TriggeringView
+                    style={styles.section}
+                    onHide={() => navTitleView.current.fadeInUp(200)}
+                    onDisplay={() => navTitleView.current.fadeOut(100)}>
+                    <Header
+                        title={data.name}
+                        release_date={data.released == null ? '' : data.released}
+                        genres={genres}
+                        ratings={ratings}
+                        rating={data.rating}
+                        vote_rating={data.rating}
+                    />
+                </TriggeringView>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}>
+                    <Overview overview={data.description_raw}
+                    />
+                    <Stores
+                        stores={stores}
+                    />
+                    <Screenshots
+                        screenshots={screenshots}
+                    />
+                    <Series
+                        series={series}
+                    />
 
-                <Screenshots
-                    screenshots={screenshots}
-                />
-                <Series
-                    series={series}
-                />
-
-            </Animated.ScrollView>
+                </ScrollView>
+            </HeaderImageScrollView>
         </View >
     )
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: 5,
-        paddingVertical: 12,
+    image: {
+        height: MAX_HEIGHT,
+        width: Dimensions.get('window').width,
+        alignSelf: 'stretch',
+        resizeMode: 'cover',
+    },
+    section: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#cccccc',
+        backgroundColor: 'white',
+    },
+    titleContainer: {
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#000'
     },
-    backButton: {
+    navTitleView: {
+        height: MIN_HEIGHT,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'ios' ? 40 : 5,
+        opacity: 0,
+    },
+    navTitle: {
         color: 'white',
-        fontSize: 14,
-        fontFamily: 'Roboto-Regular',
+        fontSize: 18,
+        fontFamily: 'Gilroy-ExtraBold',
+        backgroundColor: 'transparent',
+        width: '70%',
     },
-    icon: {
-        marginRight: 5,
-        marginTop: Platform.OS === 'ios' ? 0 : 2,
-        height: 15,
-        width: 15,
+    sectionLarge: {
+        minHeight: 300,
     },
 });

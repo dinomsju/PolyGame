@@ -34,23 +34,11 @@ export default function Header({ backTo, image, background, name, positions, gam
   return (
     <View>
       <View style={styles.container}>
-        <StatusBar
-          translucent={true}
-          backgroundColor={'transparent'}
-          barStyle="light-content"
-        />
         <Image
           style={styles.background}
           resizeMode="cover"
           source={{ uri: `${background}` }}
         />
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Main')}>
-          <View style={common.row}>
-            <Ionicons name="arrow-back" color={'white'} size={40} />
-          </View>
-        </TouchableOpacity>
       </View>
       <Image
         source={{
@@ -77,7 +65,7 @@ export default function Header({ backTo, image, background, name, positions, gam
           </LinearGradient>
         </TouchableOpacity>
         <View>
-          <Text style={[common.title, { color: 'white', padding: 10, marginVertical: 15 }]}> Known For Games</Text>
+          <Text style={[common.title, { color: 'white', padding: 10, marginVertical: 15 }]}>Known For Games</Text>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -116,7 +104,7 @@ const styles = StyleSheet.create({
     height: 140,
     width: 140,
     position: 'absolute',
-    top: 160
+    top: 140
   },
   background: {
     position: 'absolute',
@@ -129,7 +117,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     position: 'absolute',
-    top: 250,
+    top: 215,
     width: width,
     justifyContent: 'center'
   },

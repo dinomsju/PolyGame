@@ -13,7 +13,7 @@ export default function GameScreen() {
 
     useEffect(() => {
         axiosConfig
-            .get(`/games?page=${page}`)
+            .get(`/games?dates=2020-01-01,2021-12-31&ordering=-rating?page=${page}`)
             .then((response) => {
                 setData(response.data);
                 setGames((oldGames) => oldGames.concat(response.data.results));
@@ -26,32 +26,25 @@ export default function GameScreen() {
     }
 
     return (
-        <View style={styles.container}>
-            <StatusBar hidden={true} />
+        <View style={{ marginBottom: 55 }}>
+            <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} />
             <SearchBar goTo="SearchScreen" backTo="Main" tag="games" />
-            <View>
-                <FlatList
-                    data={games}
-                    showsVerticalScrollIndicator={false}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <GameItem goTo="DetailGames"
-                            id={item.id}
-                            image={item.background_image}
-                            name={item.name}
-                            released={item.released == null ? "" : item.released.substring(0, 4)}
-                            rating={item.rating}
-                        />
-                    )}
-                    onEndReached={() => setPage(page + 1)}
-                    onEndReachedThreshold={0.1}
-                />
-            </View>
+            <FlatList
+                data={games}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                    <GameItem goTo="DetailGames"
+                        id={item.id}
+                        image={item.background_image}
+                        name={item.name}
+                        released={item.released == null ? "" : item.released}
+                        rating={item.rating}
+                    />
+                )}
+                onEndReached={() => setPage(page + 1)}
+                onEndReachedThreshold={0.1}
+            />
         </View>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        marginBottom: 110,
-    },
-});
