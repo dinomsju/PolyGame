@@ -11,17 +11,14 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { useTheme } from 'react-native-paper';
 
 export default function SearchBar({ goTo, tag, backTo }) {
+  const { colors } = useTheme();
   const navigation = useNavigation();
   const [query, onChangeText] = useState('');
   return (
-    <LinearGradient colors={['black', '#232526']} style={styles.container}>
-      <StatusBar
-        translucent={true}
-        backgroundColor={'transparent'}
-        barStyle="light-content"
-      />
+    <View style={styles.container}>
 
       <View
         style={{
@@ -48,11 +45,11 @@ export default function SearchBar({ goTo, tag, backTo }) {
         />
         <Pressable onPress={() => navigation.navigate(goTo, { tag, query })}>
           <View style={styles.search}>
-            <FontAwesome name="search" color="white" size={24} />
+            <FontAwesome name="search" color={colors.text} size={24} />
           </View>
         </Pressable>
       </View>
-    </LinearGradient>
+    </View>
   );
 }
 const styles = StyleSheet.create({

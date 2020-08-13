@@ -4,12 +4,14 @@ import axiosConfig, { apiKey } from '../api/axios';
 import CreatorsItem from '../components/List/CreatorsItem';
 import SearchBar from '../components/SearchBar';
 import LottieView from 'lottie-react-native'
+import { useTheme } from 'react-native-paper'
 
 export default function CreatorScreen() {
   const [creators, setCreators] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const numColumns = 2;
+  const { colors } = useTheme();
 
   useEffect(() => {
     axiosConfig
@@ -26,7 +28,7 @@ export default function CreatorScreen() {
 
   return (
     <View style={{ paddingBottom: 110 }}>
-      <StatusBar backgroundColor="transparent" barStyle="dark-content" hidden={true} />
+      <StatusBar backgroundColor={colors.background} barStyle='dark-content' />
       <View>
         <SearchBar goTo="SearchScreen" backTo="Main" tag="creators" />
         <FlatList

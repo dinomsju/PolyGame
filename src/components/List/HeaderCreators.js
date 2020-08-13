@@ -51,21 +51,21 @@ export default function Header({ backTo, image, background, name, positions, gam
         <Text style={{ borderColor: 'white', borderWidth: 1, height: 2, marginHorizontal: 60 }}></Text>
         <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5 }}>
           <Text style={{ fontSize: 20, fontFamily: 'Gilroy-ExtraBold', textAlign: 'center', color: 'white' }}>
-            {positions.map(function (positions, index) {
-              if (index === 0)
+            {positions ? positions.map(function (positions, index) {
+              if (index == 0)
                 return " " + positions.name.charAt(0).toUpperCase() + positions.name.slice(1);
               else
                 return ", " + positions.name.charAt(0).toUpperCase() + positions.name.slice(1);
-            })}
+            }) : null}
           </Text>
         </View>
         <TouchableOpacity>
-          <LinearGradient colors={['black', '#232526']} style={{ padding: 15, borderRadius: 10, margin: 5, width: 175, marginHorizontal: 105 }}>
+          <LinearGradient colors={['black', '#232526']} style={{ padding: 10, borderRadius: 10, marginVertical: 5, width: 175, marginHorizontal: 105 }}>
             <Text style={{ fontFamily: 'Gilroy-ExtraBold', color: 'white', textAlign: 'center', fontSize: 18 }}>Follow</Text>
           </LinearGradient>
         </TouchableOpacity>
         <View>
-          <Text style={[common.title, { color: 'white', padding: 10, marginVertical: 15 }]}>Known For Games</Text>
+          <Text style={[common.title, { color: 'white', padding: 10, marginVertical: 10 }]}>Known For Games</Text>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}

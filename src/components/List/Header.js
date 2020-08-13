@@ -23,7 +23,8 @@ export default function Header({
     release_date,
     ratings,
     genres,
-    rating
+    rating,
+    ratings_count
 
 }) {
     const navigation = useNavigation();
@@ -37,15 +38,14 @@ export default function Header({
     );
 
     return (
-        <View style={[styles.container, { borderTopRightRadius: 20, borderTopLeftRadius: 20 }]}>
+        <View style={styles.container}>
             <View
                 style={{
-                    paddingTop: 20,
                     flexDirection: 'row',
                 }}>
-                <View style={{ paddingHorizontal: 10, marginTop: -25, paddingTop: 10 }}>
+                <View>
                     {/* title */}
-                    <Text style={[common.title, { marginVertical: 5, color: 'gray', fontSize: 22 }]}>{title}</Text>
+                    <Text style={[common.title, { margin: 5, color: 'gray', fontSize: 22 }]}>{title}</Text>
                     {/* genres */}
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ fontSize: 16, fontFamily: 'Gilroy-ExtraBold' }}>
@@ -61,7 +61,7 @@ export default function Header({
                         {/* ratings */}
                         <View style={[common.row, { alignItems: 'center', padding: 5, marginRight: 20 }]}>
                             <Ionicons name="star" size={18} color={'#3b5998'} style={{ paddingRight: 2 }} />
-                            <Text style={[common.subtitle, { fontFamily: 'Gilroy-ExtraBold', color: '#3b5998' }]}>{rating}</Text>
+                            <Text style={[common.subtitle, { fontFamily: 'Gilroy-ExtraBold', color: '#3b5998' }]}>{rating} <Text style={{ color: 'gray', fontFamily: 'Gilroy-Light' }}>({ratings_count})</Text> </Text>
                         </View>
                         {/* release_date */}
                         <View style={[common.row, { alignItems: 'center', padding: 5 }]}>
@@ -87,7 +87,8 @@ export default function Header({
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        borderBottomColor: 'gray',
+        borderBottomWidth: 1,
+        borderBottomColor: '#cccccc',
     },
     backdrop: {
         position: 'absolute',

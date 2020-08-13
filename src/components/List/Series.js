@@ -15,8 +15,8 @@ export default function Series({ series }) {
     );
 
     return (
-        <View style={{ backgroundColor: 'white' }}>
-            <Text style={[common.heading, { paddingLeft: 10 }]}>Other games in the series</Text>
+        <View>
+            <Text style={[common.heading, { paddingLeft: 10 }]}>Other games in the series <Text style={{ color: 'red', fontFamily: 'Gilroy-light', fontSize: 17 }}>({series.length})</Text></Text>
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}

@@ -81,6 +81,9 @@ export default function DetailGame({ navigation, route }) {
                     style={styles.section}
                     onHide={() => navTitleView.current.fadeInUp(200)}
                     onDisplay={() => navTitleView.current.fadeOut(100)}>
+                </TriggeringView>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}>
                     <Header
                         title={data.name}
                         release_date={data.released == null ? '' : data.released}
@@ -88,10 +91,8 @@ export default function DetailGame({ navigation, route }) {
                         ratings={ratings}
                         rating={data.rating}
                         vote_rating={data.rating}
+                        ratings_count={data.ratings_count}
                     />
-                </TriggeringView>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}>
                     <Overview overview={data.description_raw}
                     />
                     <Stores

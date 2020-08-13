@@ -18,11 +18,14 @@ export default function Stores({ stores }) {
     );
 
     return (
-        <View style={[common.container, { backgroundColor: 'white' }]} >
-            <Text style={common.heading}>Where to buy</Text>
+        <View style={[common.container, {
+            backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#cccccc'
+        }]}>
+            <Text style={common.heading}>Where to buy <Text style={{ color: 'red', fontFamily: 'Gilroy-light', fontSize: 17 }}>({stores.length})</Text></Text>
             <View>
                 <FlatList
                     horizontal
+                    showsHorizontalScrollIndicator={false}
                     paddingBottom={5}
                     data={stores}
                     keyExtractor={(item, index) => index.toString()}

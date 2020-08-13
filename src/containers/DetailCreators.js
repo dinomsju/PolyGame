@@ -49,7 +49,7 @@ export default function DetailCreators({ route }) {
                 image={data.image == null ? data.image_background : data.image}
                 background={data.image_background}
                 name={data.name}
-                positions={position}
+                positions={position == null ? '' : position}
                 games={games} />
         </View>
     );

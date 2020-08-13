@@ -5,7 +5,7 @@ const height = Dimensions.get('window').height;
 
 export default StyleSheet.create({
     container: {
-        paddingHorizontal: 10,
+        marginHorizontal: 5,
         paddingBottom: 10,
         backgroundColor: 'white',
     },

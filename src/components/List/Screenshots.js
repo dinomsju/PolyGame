@@ -7,24 +7,25 @@ export default function Screenshots({ screenshots }) {
     const navigation = useNavigation();
 
     const _renderItem = ({ item }) => (
-        <View style={{ margin: 5, backgroundColor: 'black' }}>
+        <View style={{ margin: 5, backgroundColor: 'black', borderRadius: 5 }}>
             <ActivityIndicator
                 size="small"
                 color="#E54028"
                 style={styles.activityIndicator}
             />
             <Image
-                style={{ width: width - 50, height: 200 }}
+                style={{ width: width - 10, height: 200, borderRadius: 5 }}
                 source={{ uri: item.image }}
             />
         </View>
     );
 
     return (
-        <View style={{ backgroundColor: 'white' }} >
-            <Text style={[common.heading, { paddingLeft: 10 }]}>Screenshots</Text>
+        <View style={{ backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#cccccc' }} >
+            <Text style={[common.heading, { paddingLeft: 10 }]}>Screenshots <Text style={{ color: 'red', fontFamily: 'Gilroy-light', fontSize: 17 }}>({screenshots.length})</Text></Text>
             <FlatList
                 horizontal
+                showsHorizontalScrollIndicator={false}
                 data={screenshots}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={_renderItem}
