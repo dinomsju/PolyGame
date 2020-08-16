@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo'
 import GameScreen from '../containers/GameScreen';
 import CreatorScreen from '../containers/CreatorScreen'
@@ -25,7 +25,7 @@ export default function MainStack() {
                 component={CreatorScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <Fontisto name="code" color={color} size={24} />
+                        <FontAwesome name="user" color={color} size={24} />
                     ),
                 }}
             />

@@ -36,7 +36,6 @@ export default function SearchBar({ goTo, tag, backTo }) {
             source={require('../assets/icons/HoneyBadger.png')}
           />
         </Pressable>
-
         <TextInput
           style={styles.input}
           placeholder="Search Here ..."
