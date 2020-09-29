@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, StatusBar, StyleSheet, ScrollView, Dimensions, Text, Image } from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { View, StyleSheet, ScrollView, Dimensions, Text } from 'react-native';
 import axiosConfig from '../api/axios';
 import Header from '../components/List/Header';
 import Overview from '../components/Overview';
 import Stores from '../components/Stores';
-import Button from '../components/Button';
 import Trailers from '../components/Trailers';
 import Series from '../components/List/Series';
 import Screenshots from '../components/List/Screenshots';
@@ -17,7 +15,7 @@ import * as Animatable from 'react-native-animatable';
 const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
 const MAX_HEIGHT = 220;
 
-export default function DetailGame({ navigation, route }) {
+export default function DetailGame({ route }) {
     const [data, setData] = useState({});
     const [genres, setGenres] = useState([]);
     const [ratings, setRatings] = useState([]);

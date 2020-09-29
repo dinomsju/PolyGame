@@ -29,6 +29,7 @@ export default function RootStack() {
                         headerTransparent: true,
                         headerTintColor: '#fff'
                     })}
+
                 />
                 <Stack.Screen
                     name="DetailCreators"
@@ -47,7 +48,6 @@ export default function RootStack() {
                         headerBackTitleVisible: false,
                         headerTitle: false,
                         headerTransparent: true,
-                        // headerTintColor: '#fff'
                     })}
                 />
             </Stack.Navigator>
