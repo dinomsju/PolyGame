@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { WebView } from 'react-native-webview';
-import common from '../theme/common';
 
 export default function Trailers({ trailers }) {
 

@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo'
-import GameScreen from '../containers/GameScreen';
-import CreatorScreen from '../containers/CreatorScreen'
+import GameScreen from '../screens/GameScreen';
+import CreatorScreen from '../screens/CreatorScreen'
 
 const Tab = createBottomTabNavigator();
 

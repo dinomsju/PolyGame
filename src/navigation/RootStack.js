@@ -2,10 +2,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import DetailGame from '../containers/DetailGame';
+import DetailGame from '../screens/DetailGame';
 import MainStack from './MainStack';
-import DetailCreators from '../containers/DetailCreators';
-import SearchScreen from '../containers/SearchScreen';
+import DetailCreators from '../screens/DetailCreators';
+import SearchScreen from '../screens/SearchScreen';
 
 const Stack = createStackNavigator();
 

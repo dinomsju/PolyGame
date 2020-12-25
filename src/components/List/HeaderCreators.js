@@ -80,7 +80,7 @@ export default function Header({ backTo, image, background, name, positions, gam
 }
 const styles = StyleSheet.create({
   container: {
-    height: height,
+    height: height + 50,
     paddingTop: 20,
     paddingLeft: 20
   },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     bottom: 0,
-    height: height,
+    height: height + 100,
     width: width,
     opacity: 0.5,
     backgroundColor: 'black'
