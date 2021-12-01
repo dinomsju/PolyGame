@@ -3,6 +3,7 @@ import React from 'react';
 import { Dimensions, Pressable, StyleSheet, View, Text, Image } from 'react-native';
 import common from '../../theme/common'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import moment from 'moment'
 
 export default function MovieItem({ goTo, id, image, name, released, rating }) {
     const navigation = useNavigation();
@@ -19,7 +20,7 @@ export default function MovieItem({ goTo, id, image, name, released, rating }) {
                 <View style={styles.innerName}>
                     <View>
                         <Text style={[common.title, { color: 'white' }]}>{name}</Text>
-                        <Text style={[common.title, { color: 'white', fontSize: 18, opacity: 0.9 }]}>{released}</Text>
+                        <Text style={[common.title, { color: 'white', fontSize: 16, opacity: 0.9 }]}>{moment(released).format('LL')}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Ionicons name="star" size={20} color={'yellow'} style={{ paddingRight: 5 }} />
                             <Text style={{ color: 'yellow', fontWeight: 'bold', fontSize: 18, fontFamily: 'Gilroy-ExtraBold', paddingRight: 5 }}>{rating}</Text>

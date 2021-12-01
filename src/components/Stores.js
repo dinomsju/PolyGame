@@ -12,7 +12,7 @@ export default function Stores({ stores }) {
     const _renderItem = ({ item, goTo }) => (
         <View style={{ padding: 2 }}>
             <Button
-                goTo={item.url}
+                // goTo={item.url}
                 label={item.store.name} />
         </View>
     );

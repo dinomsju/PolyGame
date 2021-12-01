@@ -17,10 +17,11 @@ export default function SearchScreen({ route }) {
   const [loading, setLoading] = useState(true);
   const tag = route.params.tag;
   const numColumn = 3;
+  const key = 'key=607302fdf5d74a98bcd6180678ad4758'
 
   useEffect(() => {
     axiosConfig
-      .get(`/${TAGs[tag]}?page=${page}&search=${route.params.query}`)
+      .get(`/${TAGs[tag]}?${key}&page=${page}&search=${route.params.query}`)
       .then((response) => {
         // setData(response.data.results);
         setData((oldGames) => oldGames.concat(response.data.results));

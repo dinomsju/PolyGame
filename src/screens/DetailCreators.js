@@ -20,10 +20,11 @@ export default function DetailCreators({ route }) {
     const [games, setGames] = useState({});
     const [position, setPosition] = useState('');
     const [loading, setLoading] = useState(true);
+    const key = 'key=607302fdf5d74a98bcd6180678ad4758'
 
     useEffect(() => {
         axiosConfig
-            .get(`/creators/${route.params.id}`)
+            .get(`/creators/${route.params.id}?${key}`)
             .then((response) => {
                 setData(response.data);
                 setPosition(response.data.positions);
@@ -31,7 +32,7 @@ export default function DetailCreators({ route }) {
             });
 
         axiosConfig
-            .get(`/games?creators=${route.params.id}`)
+            .get(`/games?${key}&creators=${route.params.id}`)
             .then((response) => {
                 setGames(response.data.results);
                 setLoading(false);

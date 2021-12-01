@@ -13,6 +13,7 @@ import {
 import common from '../../theme/common';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import LinearGradient from 'react-native-linear-gradient';
+import moment from 'moment'
 
 
 const width = Dimensions.get('window').width;
@@ -66,7 +67,7 @@ export default function Header({
                         {/* release_date */}
                         <View style={[common.row, { alignItems: 'center', padding: 5 }]}>
                             <Ionicons name="calendar" size={18} color={'#3b5998'} style={{ paddingRight: 2 }} />
-                            <Text style={[common.subtitle, { fontFamily: 'Gilroy-ExtraBold', color: '#3b5998' }]}>{release_date}</Text>
+                            <Text style={[common.subtitle, { fontFamily: 'Gilroy-ExtraBold', color: '#3b5998' }]}>{moment(release_date).format('LL')}</Text>
                         </View>
                     </View>
                     <View>

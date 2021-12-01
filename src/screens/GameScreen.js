@@ -12,10 +12,11 @@ export default function GameScreen() {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const { colors } = useTheme();
+    const key = 'key=607302fdf5d74a98bcd6180678ad4758'
 
     useEffect(() => {
         axiosConfig
-            .get(`/games?dates=2020-01-01,2021-12-31&ordering=-rating?page=1&page=${page}`)
+            .get(`/games?${key}&dates=2021-01-01,2021-12-31&ordering=-rating?page=1&page=${page}`)
             .then((response) => {
                 setData(response.data);
                 setGames((oldGames) => oldGames.concat(response.data.results));

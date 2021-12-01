@@ -12,10 +12,11 @@ export default function CreatorScreen() {
   const [loading, setLoading] = useState(true);
   const numColumns = 2;
   const { colors } = useTheme();
+  const key = 'key=607302fdf5d74a98bcd6180678ad4758'
 
   useEffect(() => {
     axiosConfig
-      .get(`/creators?page=${page}`)
+      .get(`/creators?${key}&page=${page}`)
       .then((response) => {
         setCreators((oldData) => oldData.concat(response.data.results));
         setLoading(false);

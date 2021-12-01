@@ -25,10 +25,11 @@ export default function DetailGame({ route }) {
     const [loading, setLoading] = useState(true);
 
     const navTitleView = useRef(null);
+    const key = 'key=607302fdf5d74a98bcd6180678ad4758'
 
     useEffect(() => {
         axiosConfig
-            .get(`/games/${route.params.id}`)
+            .get(`/games/${route.params.id}?${key}`)
             .then((response) => {
                 setData(response.data);
                 setGenres(response.data.genres);
@@ -38,13 +39,13 @@ export default function DetailGame({ route }) {
             });
 
         axiosConfig
-            .get(`/games/${route.params.id}/screenshots`)
+            .get(`/games/${route.params.id}/screenshots?${key}`)
             .then((response) => {
                 setScreenshots(response.data.results);
                 setLoading(false);
             });
         axiosConfig
-            .get(`/games/${route.params.id}/game-series`)
+            .get(`/games/${route.params.id}/game-series?${key}`)
             .then((response) => {
                 setSeries(response.data.results);
                 setLoading(false);
